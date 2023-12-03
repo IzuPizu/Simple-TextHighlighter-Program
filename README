@@ -1,9 +1,5 @@
-  Nume: Ureche Andreea-Maria
-  Grupa: 312 CC 
-  ------- 1.Text Highlight --------
 
-  Timp de implementare : 1 zi
-
+  ------- Text Highlight --------
   Pentru aceasta problema am decis sa creez un vector de pointeri
   la siruri de caractere pe care l-am alocat dinamic astfel incat 
   sa ofere memorie pentru N pointeri la caractere.
@@ -76,87 +72,4 @@
   La finalul programului eliberam memoria alocata dinamic pentru vectorul 
   de pointeri la caractere si pentru sirurile de caractere.
 
-   -------- 1.Calculator pe biti --------
-
-   Timp de implementare : 2 zile
-
-   Pentru rezolvarea acestei probleme am creat mai multe functii, 
-   cate una pentru fiecare operatie care poate avea loc :
-   adunare , interschimbare, rotatie la stanga , xor,
-   dar si o functie extraction ce extrage primii p biti incepand cu o anumita
-   pozitie.
-   Aceasta primeste ca parametrii numarul din care se vor extrage bitii ,
-   numarul de biti pe care dorim sa-i extragem si pozitia .
-   Am creat o variabila right_shift in care am salvat numarul dupa deplasarea 
-   acestuia spre dreapta cu pos - 1 astfel incat cei p biti sa inceapa de pe 
-   prima pozitie (LSB -> MSB). 
-   Intr-o alta variabila new_num am creat un numar (de forma 2 la puterea p) 
-   din care am scazut 1 pentru a ajunge la un numar de forma 11..1  
-   iar apoi am aplicat AND pe cele 2 variabile pentru a obtine setul de p biti.
-
-   Voi explica pe scurt functionalitatea fiecarei functii pentru operatii:
-
-    ->Functia op_add are rolul de a aduna 2 numere folosind operatiile 
-      pe biti, astfel ca aflam carry-ul aplicand AND pe cei doi operanzi,
-      aflam suma si o salvam in primul numar folosind XOR,  
-      deplasam la stanga cu 1 carry-ul deoarece acesta se adauga la
-      urmatorul bit, iar procesul se repeta pana cand carry-ul devine 0.
-
-    ->Functia op_ichange are rolul de a interschimba bitii de pe 
-     pozitiile p1 si p2 din primul numar , unde p1 reprezinta 
-     valoarea primilor doi biti din al doilea numar ,iar
-     p2 valoarea ultimilor 2 biti din al doilea numar . (de la MSB -> LSB) 
-     Fiindca in enuntul problemei indexarea incepea de la stanga 
-     la dreapta , am fortat pozitiile p1 si p2 sa ia valoarea 
-     corespunzatoare acestei indexari .
-     Apoi am interschimbat bitii de pe poztiile p1 si p2 din primul numar .
-
-    ->Functia op_lshift are rolul de a rotii la stanga nr1 de nr2 ori. 
-     Deoarece numarul poate fi reprezentat pe maxim 4 biti 
-     vom face deplasarea la stanga a bitilor in functie de rezultatul nr2 % 4 .
-     Daca restul este 0 inseamna ca ca toti bitii vor fi rotiti la stanga 
-     ajungand tot in pozitia initiala deci vom intoarce nr1
-     asa cum este. In caz contrar , i vom deplasa cu nr2 % 4 
-     catre stanga iar pentru ca acesti ultimi biti vor avea valoarea 0 
-     dupa deplasare , vom deplasa in acelasi
-     timp bitii din stanga catre dreapta si vom folosi OR pe 
-     cele 2 valori pentru a obtine rezulatul pe care il vom masca
-     la final pentru a obtine doar bitii de care avem nevoie.
-
-    ->Functia op_xor are rolul de a aplica operatorul XOR pe 
-     cele doua numere dar fara a folosi explicit ^ . 
-     Aceasta returneaza defapt echivalentul operatorului XOR 
-     folosind ceilalti operatori binari.Expresia booleana
-     pe care am folosit-o este : (nr1 AND !nr2) OR (!nr1 AND nr2)
-    
-    In functia main am inceput prin a crea un vector de pointeri
-    la functiile de mai sus , am citit numarul de operatii precum 
-    si numarul M din care vor fi extrase operatiile si numerele.
-    Am folosit un vector de tip unsigned pentru a stoca cei N*6+4 biti .
-    Folosind un for cu indecsii : k pentru pozitia din vector, i pentru numar,
-    j pentru operatie ; am parcurs numarul de la LSB catre MSB si am extras
-    cate 4 biti incepand cu pozitia i pentru pentru a salva valoarea numarului 
-    in v[k] si cate 2 biti incepand cu pozitia j pentru a salva valoarea
-    operatiei in v[k+1].
-    Indexul i si j va creste cu 6 de fiecare data pentru a trece la
-    indexul aferent urmatorului numar (peste inca 6 biti incepe reprezentarea
-    unui alt numar ),respectiv urmatoarei operatii.
-    Vectorul rezultat va avea forma : 
-    v[0] = nr1 , v[1] = operatie , v[2] = nr2 , v[3] = operatie , ...
-    Deoarece calculul se va efectua de la stanga la dreapta ,
-    am parcurs vectorul de la final catre inceput , si am testat valoarea
-    operatiei. Astfel folosind vectorul de pointeri 
-    la functii , se va apela functia de adunare atunci cand valoarea operatiei
-    este 0  , functia de interschimbare cand valoarea operatiei este 1,
-    functia de rotatie cand valoarea operatiei este 2 , sau functia
-    de xor cand valoarea operatiei este 3. 
-    Rezultatul returnat de catre functie va fi salvat in variabila result ,
-    iar mai apoi nr1 va fi reinitializat cu aceasta valoare pentru 
-    a putea continua efectuarea operatiilor cu noul nr1 si nr2. 
-    Deoarece rezultatul trebuie sa fie un numar tot pe 4 biti 
-    voi trunchia rezultatul extragand doar primii 4 biti 
-    folosind functia extraction in cazul in care acesta depaseste 
-    numarul 15 (1111).
-    Rezultatul final al calculului se va afla tot in nr1.
-
-
+   
